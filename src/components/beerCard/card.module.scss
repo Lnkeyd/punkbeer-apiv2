@@ -1,0 +1,17 @@
+.beerCard {
+    cursor: pointer;
+    padding: 10px;
+    max-width: 400px;
+    .image {
+        display: block;
+        height: 178px;
+        // width: 46px;
+        margin: 0 auto;
+    }
+    .title {
+        margin-top: 32px;
+    }
+    .description {
+        margin-top: 12px;
+    }
+}

@@ -1,0 +1,20 @@
+.image {
+  display: block;
+  height: 250px;
+  margin: 0 auto;
+  margin-bottom: 75px;
+}
+
+.ul {
+  -webkit-padding-start: 20px;
+          padding-inline-start: 20px;
+  font-style: italic;
+}
+
+.back {
+  cursor: pointer;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+/*# sourceMappingURL=beerItem.module.css.map */

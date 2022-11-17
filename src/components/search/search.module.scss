@@ -1,0 +1,28 @@
+.search {
+    position: relative;
+    .icon {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+}
+
+.input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-top: 56px;
+    padding-left: 32px;
+    padding-right: 16px;
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 700;
+    font-family: "Maitree", serif;
+    >* {
+        padding-top: 25px;
+    }
+    &:focus {
+        outline: none;
+    }
+}

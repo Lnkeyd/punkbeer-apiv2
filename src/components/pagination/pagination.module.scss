@@ -1,0 +1,35 @@
+.pagination {
+    display: flex;
+    margin: 0;
+    margin-top: 40px;
+    width: fit-content;
+    margin-right: 0;
+    margin-left: auto;
+    padding: 0;
+}
+
+.list {
+    list-style: none;
+}
+
+.button {
+    cursor: pointer;
+    border: 1px solid whitesmoke;
+    height: 25px;
+    width: 38px;
+    background-color: black;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Quantico", sans-serif;
+    font-style: italic;
+}
+
+.prev, .next {
+    min-width: 80px;
+}
+
+.active {
+    background-color: aquamarine;
+    color: black;
+}
