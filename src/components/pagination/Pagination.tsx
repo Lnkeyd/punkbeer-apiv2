@@ -43,6 +43,7 @@ const Pagination = ({ pages, setCurrentPage, itemsPerPage, setItemsPerPage, item
         }
         setCurrentNumbers(tempPages)
         setCurrentPage(currentNumber)
+        //eslint-disable-next-line
     }, [currentNumber, itemsPerPage])
 
     return (
