@@ -1,0 +1,51 @@
+.pagination {
+    display: flex;
+    margin-top: 70px;
+}
+
+.pagination__number {
+    width: 30px;
+    height: 25px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid;
+    font-weight: 600;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.pagination__prev, .pagination__next {
+    background-color: rgb(228, 84, 0);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid black;
+    width: 40px;
+    text-align: center;
+}
+
+.pagination__active {
+    background-color: rgb(228, 84, 0);
+}
+
+.per_page {
+    margin-top: 25px;
+    display: flex;
+}
+
+.show {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.show__active {
+    background-color: rgb(228, 84, 0);
+}

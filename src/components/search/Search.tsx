@@ -1,13 +1,15 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import inputStyles from './search.module.css'
 import { faBeerMugEmpty } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
-const Search = () => {
-    const [input, setInput] = useState('')
+const Search = ({ setSearch }) => {
+
+  //https://api.punkapi.com/v2/beers?beer_name=punk
+
     const handleInput = (e) => {
-        setInput(e.target.value)
-      }
+      setSearch(e.target.value)
+    }
 
   return (
     <div className={inputStyles.search}>

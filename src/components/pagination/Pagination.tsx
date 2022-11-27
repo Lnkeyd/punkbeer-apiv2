@@ -1,107 +1,71 @@
 import React from 'react'
-import paginationStyles from './pagination.module.css'
 import { useState, useEffect } from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import './pagination.css'
 
-const Pagination = ({ beersPerPage, totalBeers, paginate, currentPage}) => {
+const Pagination = ({ pages, setCurrentPage, itemsPerPage, setItemsPerPage, items }) => {   
 
-  //TODO: Left and Right Boundaries, if (currentItem - 2 === firstItem) {
-  //  prevButton = disabled
-  //  } and similar to the nextButton
+    const [currentNumber, setCurrentNumber] = useState<any>(1)
+    const pageNumbers = []
 
-  const [pageNumberLimit, setPageNumberLimit] = useState(3)
-  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3)
-  const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
-
-  const pageNumbers = []
-
-  for(let i = 1; i<=Math.ceil(totalBeers / beersPerPage); i++) {
-    pageNumbers.push(i)
-  }
-
-  const firstPage = 1
-  const totalPages = Math.ceil(totalBeers / beersPerPage) //28
-
-  // const range = (from, to, step = 1) => {
-  //   let i = from;
-  //   const range = [];
-
-  //   while (i <= to) {
-  //     range.push(i);
-  //     i += step;
-  //   }
-
-  //   return range;
-  // };
-
-  let tempPages = [...pageNumbers]
-
-  useEffect(() => {
-    tempPages = tempPages.slice(minPageNumberLimit, maxPageNumberLimit)
-  }, [])
-
-
-  const handlePrevButton = () => {
-    paginate(currentPage => currentPage - 1)
-    if (currentPage - 1 < minPageNumberLimit) {
-      setMaxPageNumberLimit(currentPage + 1)
-      setMinPageNumberLimit(currentPage - 1)
+    for (let i = 1; i <= pages; i++) {
+        pageNumbers.push(i)
     }
-  }
+    
+    const [currentNumbers, setCurrentNumbers] = useState([])
 
-  const handleNextButton = () => {
-    paginate(currentPage => currentPage + 1)
-    if (currentPage + 1 > maxPageNumberLimit) {
-      setMaxPageNumberLimit(currentPage + 1)
-      setMinPageNumberLimit(currentPage - 1)
-    }
-  }
- 
-  return (
-    <div>
-      <ul className={paginationStyles.pagination}>
-        {/* <button 
-          className={`${paginationStyles.button}
-          ${currentPage === 1 ? paginationStyles.active : ""}`} 
-          onClick={() => paginate(1)}
-          >{1}</button> */}
-        <button 
-          className={`${paginationStyles.button}`} 
-          onClick={handlePrevButton}
-          disabled={currentPage === firstPage}
-          >
-            <FontAwesomeIcon icon={faAngleLeft} className='fa-lg' />
-          </button>
-        {
-          tempPages.map(number => {
-            if (number < maxPageNumberLimit + 1 && number >= minPageNumberLimit) 
-            return (
-              <li className={paginationStyles.list} key={number}>
-                <button 
-                  className={`${paginationStyles.button} ${currentPage === number ? paginationStyles.active : ""}`} 
-                  onClick={() => paginate(number)}
-                  >
-                  {number}
-                </button>
-              </li>
-          )})
+    useEffect(() => {        
+        let tempPages = [...currentNumbers]
+
+        let dots = '...'
+        let dotsLeft = '... '
+        let dotsRight = ' ...'
+
+        if (currentNumber >= 1 && currentNumber <= 3) {
+            tempPages = [1, 2, 3, 4, 5, dots, pageNumbers.length]
+        } 
+        // else if (currentNumber === 4) {
+        //     const sliced = pageNumbers.slice(0, 5)
+        //     tempPages = [...sliced, dots, pageNumbers.length]
+        // } 
+        else if (currentNumber > 3 && currentNumber < pageNumbers.length - 2) {
+            const sliced1 = pageNumbers.slice(currentNumber - 2, currentNumber)
+            const sliced2 = pageNumbers.slice(currentNumber, currentNumber + 1)
+            tempPages = ([1, dotsLeft, ...sliced1, ...sliced2, dotsRight, pageNumbers.length])
+        } else if (currentNumber > pageNumbers.length - 3) {
+            const sliced = pageNumbers.slice(pageNumbers.length - 5)
+            tempPages = ([1, dotsLeft, ...sliced])
+        }  else if (currentNumber === dots) {
+            setCurrentNumber(currentNumbers[currentNumbers.length - 3] + 1)
+        } else if (currentNumber === dotsLeft) {
+            setCurrentNumber(currentNumbers[3] - 2)
+        } else if (currentNumber === dotsRight) {
+            setCurrentNumber(currentNumbers[3] + 2)
         }
-        <button 
-          className={`${paginationStyles.button}`} 
-          onClick={handleNextButton}
-          disabled={currentPage === totalPages}
-          >
-            <FontAwesomeIcon icon={faAngleRight} className='fa-lg' />
-          </button>
-        {/* <button 
-          className={`${paginationStyles.button}
-          ${currentPage === totalPages ? paginationStyles.active : ""}`} 
-          onClick={() => paginate(totalPages)}
-          >{totalPages}</button> */}
-      </ul>
-    </div>
+        setCurrentNumbers(tempPages)
+        setCurrentPage(currentNumber)
+    }, [currentNumber, itemsPerPage])
+
+    return (
+        <>
+            <div className='pagination'>
+                <div className="pagination__prev" onClick={() => setCurrentNumber(currentNumber === 1 ? currentNumber : currentNumber - 1)}>prev</div>
+                {
+                    currentNumbers.map((number, i) => (
+                        <div className={`${currentNumber === number ? "pagination__active pagination__number" : "pagination__number"}`} key={i} onClick={() => setCurrentNumber(number)}>
+                            {number}
+                        </div>
+                    ))
+                }
+                <div className="pagination__next" onClick={() => setCurrentNumber(currentNumber === pageNumbers.length ? currentNumber : currentNumber + 1)}>next</div>
+            </div>
+
+            <div className="per_page">
+                <div className={`${itemsPerPage === 6 ? "show__active show" : "show"}`} onClick={() => setItemsPerPage(6)} >6 per page</div>
+                <div className={`${itemsPerPage === 12 ? "show__active show" : "show"}`} onClick={() => setItemsPerPage(12)} >12 per page</div>
+                <div className={`${itemsPerPage === 24 ? "show__active show" : "show"}`} onClick={() => setItemsPerPage(24)} >24 per page</div>
+                <div className={`${itemsPerPage === 60 ? "show__active show" : "show"}`} onClick={() => setItemsPerPage(60)} >60 per page</div>
+            </div>
+        </>
   )
 }
 
