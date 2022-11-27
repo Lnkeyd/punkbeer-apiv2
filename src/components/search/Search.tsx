@@ -1,4 +1,3 @@
-import React, {useEffect, useState} from 'react'
 import inputStyles from './search.module.css'
 import { faBeerMugEmpty } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
