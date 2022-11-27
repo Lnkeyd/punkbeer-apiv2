@@ -1,3 +1,17 @@
-### This is my test project with punkapiV2 with cards, card info, pagination and search features.
-### Also I'm trying to implement TS in my tech stack so this is a short step in that direction. Enjoy!
+## Readme
 
+#### This is my test project with punkapiV2 with:
+
+- Cards;
+- Card Info;
+- Pagination;
+- And Search Features.
+
+## Screenshots
+
+![](https://drive.google.com/uc?export=view&id=1i7bvOfXcdpKGUDxMNhItCiB22fyL-IuP)
+
+![](https://drive.google.com/uc?export=view&id=1IRl4-u2cdGBqjVtVG-6goHFSKteSMkk_)
+
+#### You can visit my site or hire me:
+[My portfolio website](https://evgeniykozlov.netlify.app/)
