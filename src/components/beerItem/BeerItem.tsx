@@ -1,5 +1,5 @@
 import React, {FC, useState, useEffect} from 'react'
-import Link, {useNavigate, useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import beerPageStyles from './beerItem.module.css'
 
 //при нажатии на элемент должна открываться страница конкретного пива содержащая подробную 
@@ -15,10 +15,6 @@ interface ISingleBeer {
     food_pairing: string[],
 }
 
-interface BeerPageParams {
-    id: string
-}
-
 const BeerPage: FC = () => {
     const navigate = useNavigate()
     const params = useParams()
@@ -30,6 +26,7 @@ const BeerPage: FC = () => {
       // setLoading(true)
       getBeer();
       // setLoading(false)
+      //eslint-disable-next-line
   }, []);
 
     const getBeer = async () => {

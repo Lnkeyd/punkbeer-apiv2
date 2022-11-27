@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React from 'react'
 import {useNavigate} from "react-router-dom";
 import cardStyles from './card.module.css'
 
